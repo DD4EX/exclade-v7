@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "e77a8f08-aefd-4b1d-b5c8-26fc53c36d2a",
-  "project_id": "08a1da49-ef34-4d89-8b67-ebe2a25ef988",
-  "url": "/__l5e/assets-v1/e77a8f08-aefd-4b1d-b5c8-26fc53c36d2a/tuco-tight-intro.mpeg",
-  "r2_key": "a/v1/08a1da49-ef34-4d89-8b67-ebe2a25ef988/e77a8f08-aefd-4b1d-b5c8-26fc53c36d2a/tuco-tight-intro.mpeg",
-  "original_filename": "tuco-tight-intro.mpeg",
-  "size": 75828,
   "content_type": "audio/mpeg",
-  "created_at": "2026-09-05T04:09:59Z"
+  "created_at": "2026-09-05T04:09:59Z",
+  "original_filename": "tuco-tight-intro.mpeg",
+  "project_id": "a89ba530-6425-4b3d-94dd-80d778985af8",
+  "r2_key": "a/v1/a89ba530-6425-4b3d-94dd-80d778985af8/e77a8f08-aefd-4b1d-b5c8-26fc53c36d2a/tuco-tight-intro.mpeg",
+  "size": 75828,
+  "url": "/__l5e/assets-v1/e77a8f08-aefd-4b1d-b5c8-26fc53c36d2a/tuco-tight-intro.mpeg",
+  "version": 1
 }
