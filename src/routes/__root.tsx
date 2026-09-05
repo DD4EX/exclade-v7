@@ -8,41 +8,33 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CinematicLoader } from "@/components/CinematicLoader";
-import { IntroMusic } from "@/components/IntroMusic";
 import { LabAmbience } from "@/components/LabAmbience";
+import { PageTransition } from "@/components/PageTransition";
 import { ParticleField } from "@/components/ParticleField";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteNav } from "@/components/SiteNav";
 
-function NotFoundComponent() {
+export function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          This file isn't in the archive. Try another route.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
+    <main className="not-found-page">
+      <div className="not-found-grid" aria-hidden="true" />
+      <div className="not-found-copy">
+        <p className="eyebrow">ARCHIVE ERROR · 404</p>
+        <h1>FILE NOT FOUND</h1>
+        <p>The address you entered is not in the EXCLADE archive. Return to the home terminal and continue from there.</p>
+        <Link to="/" className="primary-cta">RETURN TO HOME <span aria-hidden="true">↗</span></Link>
       </div>
-    </div>
+    </main>
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+export function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -127,6 +119,8 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const [showLoader, setShowLoader] = useState(false);
+  const [routeChanging, setRouteChanging] = useState(false);
+  const firstPath = useRef(true);
 
   useEffect(() => {
     if (window.sessionStorage.getItem("exclade-intro-seen")) return;
@@ -144,6 +138,17 @@ function RootComponent() {
   };
 
   useEffect(() => {
+    if (firstPath.current) {
+      firstPath.current = false;
+      return;
+    }
+
+    setRouteChanging(true);
+    const timer = window.setTimeout(() => setRouteChanging(false), 700);
+    return () => window.clearTimeout(timer);
+  }, [pathname]);
+
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, [pathname]);
 
@@ -151,6 +156,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <div className="exclade-app">
         {showLoader && <CinematicLoader onSkip={skipLoader} />}
+        <PageTransition active={routeChanging} pathname={pathname} />
         <ScrollProgress />
         <ParticleField />
         <LabAmbience />
@@ -160,7 +166,6 @@ function RootComponent() {
           <Outlet />
         </main>
         <SiteFooter />
-        <IntroMusic />
       </div>
     </QueryClientProvider>
   );
