@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { ArrowDown, ArrowRight } from "lucide-react";
 
 type HeroSectionProps = { onEnterLab?: () => void };
@@ -43,7 +44,7 @@ export function HeroSection({ onEnterLab }: HeroSectionProps) {
             ENTER THE LAB
             <ArrowRight aria-hidden="true" size={18} />
           </button>
-          <a className="secondary-cta" href="#about">EXPLORE EXCLADE</a>
+          <Link className="secondary-cta" to="/about">EXPLORE EXCLADE</Link>
         </div>
       </div>
 

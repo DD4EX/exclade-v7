@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Megaphone, Radio, ScrollText, Users } from "lucide-react";
 
 const PENDING = "CONTACT DETAILS — COMING SOON";
@@ -107,8 +108,8 @@ export function ContactSection() {
             Official contact channels will be published here once released by the coordinators.
           </p>
           <div className="hero-actions">
-            <a className="primary-cta" href="#register">REGISTER FOR EXCLADE 2K26 <span aria-hidden="true">→</span></a>
-            <a className="secondary-cta" href="#crew">MEET THE CREW</a>
+            <Link className="primary-cta" to="/register">REGISTER FOR EXCLADE 2K26 <span aria-hidden="true">→</span></Link>
+            <Link className="secondary-cta" to="/crew">MEET THE CREW</Link>
           </div>
         </div>
       </div>

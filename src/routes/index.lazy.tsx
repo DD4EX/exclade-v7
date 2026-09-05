@@ -1,6 +1,29 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
-import { ExcladePage } from "@/components/ExcladePage";
+import { useCallback, useState } from "react";
+
+import { HeroSection } from "@/components/HeroSection";
+import { LabEntryTransition } from "@/components/LabEntryTransition";
+import { LabIntro } from "@/components/LabIntro";
+import { LabDashboard } from "@/components/LabDashboard";
 
 export const Route = createLazyFileRoute("/")({
-  component: ExcladePage,
+  component: HomePage,
 });
+
+function HomePage() {
+  const [showGate, setShowGate] = useState(false);
+
+  const finishGate = useCallback(() => {
+    setShowGate(false);
+    document.getElementById("lab")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
+  return (
+    <>
+      {showGate && <LabEntryTransition onDone={finishGate} />}
+      <HeroSection onEnterLab={() => setShowGate(true)} />
+      <LabIntro />
+      <LabDashboard />
+    </>
+  );
+}

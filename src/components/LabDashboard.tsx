@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Lock, Unlock } from "lucide-react";
 
 export function LabDashboard() {
@@ -13,19 +14,19 @@ export function LabDashboard() {
         </div>
 
         <div className="dashboard-grid">
-          <a className="op-card op-card-active reveal-on-scroll" href="#events">
+          <Link className="op-card op-card-active reveal-on-scroll" to="/events">
             <span className="op-status"><Unlock aria-hidden="true" size={13} /> UNLOCKED</span>
             <h3>TECHNICAL</h3>
             <p>CLASSIFIED OPERATIONS</p>
             <span className="op-meta">05 FILES · VIEW OPERATIONS →</span>
-          </a>
+          </Link>
 
-          <a className="op-card op-card-active reveal-on-scroll" href="#non-technical">
+          <Link className="op-card op-card-active reveal-on-scroll" to="/events">
             <span className="op-status"><Unlock aria-hidden="true" size={13} /> UNLOCKED</span>
             <h3>NON-TECHNICAL</h3>
             <p>UNDERGROUND CHALLENGES</p>
             <span className="op-meta">06 OPERATIONS · ENTER CHAOS ZONE →</span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
