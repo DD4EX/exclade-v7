@@ -1,10 +1,12 @@
+import { Link } from "@tanstack/react-router";
+
 const footerLinks = [
-  ["HOME", "#home"],
-  ["ABOUT", "#about"],
-  ["EVENTS", "#events"],
-  ["CREW", "#crew"],
-  ["REGISTER", "#register"],
-  ["CONTACT", "#contact"],
+  ["HOME", "/"],
+  ["ABOUT", "/about"],
+  ["EVENTS", "/events"],
+  ["CREW", "/crew"],
+  ["REGISTER", "/register"],
+  ["CONTACT", "/contact"],
 ] as const;
 
 export function SiteFooter() {
@@ -26,8 +28,8 @@ export function SiteFooter() {
         </div>
 
         <nav className="footer-nav" aria-label="Footer navigation">
-          {footerLinks.map(([label, href]) => (
-            <a key={label} href={href}>{label}</a>
+            {footerLinks.map(([label, to]) => (
+              <Link key={label} to={to}>{label}</Link>
           ))}
         </nav>
 
@@ -43,7 +45,7 @@ export function SiteFooter() {
       <div className="footer-baseline">
         <span>EXCLADE 2K26</span>
         <span>THE OPERATION ENDS. THE EXPERIENCE DOESN'T.</span>
-        <span>PHASE 05 · PRODUCTION READY</span>
+        <span>PRODUCTION READY</span>
       </div>
     </footer>
   );

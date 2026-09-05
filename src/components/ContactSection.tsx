@@ -17,7 +17,7 @@ const channels = [
     line: "Reserve your place in the operation.",
     detail: "USE THE REGISTRATION TERMINAL BELOW.",
     icon: ScrollText,
-    href: "#register",
+    href: "/register",
     cta: "OPEN TERMINAL",
   },
   {
@@ -33,7 +33,7 @@ const channels = [
     line: "Reach the coordinators of a specific operation.",
     detail: "SEE THE PERSONNEL DATABASE.",
     icon: Users,
-    href: "#crew",
+    href: "/crew",
     cta: "VIEW CREW",
   },
 ] as const;
@@ -92,9 +92,9 @@ export function ContactSection() {
                   {channel.detail}
                 </p>
                 {"href" in channel && channel.href ? (
-                  <a className="contact-card-cta" href={channel.href}>
+                  <Link className="contact-card-cta" to={channel.href}>
                     {channel.cta} <span aria-hidden="true">→</span>
-                  </a>
+                  </Link>
                 ) : null}
               </article>
             );

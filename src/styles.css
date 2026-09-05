@@ -233,6 +233,27 @@ html { scroll-behavior: smooth; background: var(--ink-deep); }
 .lab-footnote { margin: 2rem 0 0; color: color-mix(in oklab, var(--sand) 34%, transparent); font-size: .58rem; letter-spacing: .2em; }
 
 .site-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem; padding: 1.8rem clamp(1.25rem, 5vw, 5rem); border-top: 1px solid var(--line); background: var(--ink-deep); color: color-mix(in oklab, var(--sand) 42%, transparent); font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; }
+.site-footer a { color: inherit; text-decoration: none; transition: color 180ms ease; }
+.site-footer a:hover, .site-footer a:focus-visible { color: var(--amber); }
+.route-view { animation: route-content-in 700ms cubic-bezier(.22,.72,0,1) both; }
+
+.page-transition { position: fixed; inset: 0; z-index: 95; pointer-events: none; overflow: hidden; }
+.page-transition-panel { position: absolute; left: 0; width: 100%; height: 52%; background: var(--ink-deep); transform: translateY(0); }
+.page-transition-panel-top { top: 0; transform-origin: top; }
+.page-transition-panel-bottom { bottom: 0; transform-origin: bottom; }
+.page-transition-scan { position: absolute; inset: 0; opacity: .18; background: repeating-linear-gradient(0deg, transparent 0 3px, var(--sand) 4px, transparent 5px); mix-blend-mode: screen; }
+.page-transition-copy { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: .8rem; color: var(--amber); font: .58rem "Space Mono", monospace; letter-spacing: .28em; opacity: 0; }
+.page-transition-copy b { color: var(--sand); font: 800 clamp(2rem, 7vw, 5rem)/1 "Syne", sans-serif; letter-spacing: -.04em; }
+.page-transition.is-active .page-transition-panel-top { animation: transition-top 650ms cubic-bezier(.77,0,.18,1) both; }
+.page-transition.is-active .page-transition-panel-bottom { animation: transition-bottom 650ms cubic-bezier(.77,0,.18,1) both; }
+.page-transition.is-active .page-transition-scan { animation: transition-scan 650ms ease both; }
+.page-transition.is-active .page-transition-copy { animation: transition-copy 650ms ease both; }
+
+.not-found-page { position: relative; display: grid; min-height: calc(100vh - 5rem); place-items: center; overflow: hidden; padding: 8rem 1.25rem 5rem; background: var(--ink-deep); isolation: isolate; }
+.not-found-grid { position: absolute; inset: 0; opacity: .25; background-image: linear-gradient(color-mix(in oklab, var(--sand) 10%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--sand) 10%, transparent) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(circle at 50% 50%, black, transparent 72%); }
+.not-found-copy { position: relative; width: min(620px, 100%); text-align: center; }
+.not-found-copy h1 { margin: .7rem 0 0; color: var(--sand); font: 800 clamp(3rem, 10vw, 7rem)/.9 "Syne", sans-serif; letter-spacing: -.06em; }
+.not-found-copy > p:not(.eyebrow) { max-width: 34rem; margin: 1.5rem auto 2rem; color: color-mix(in oklab, var(--sand) 62%, transparent); line-height: 1.8; }
 .site-footer span:first-child { color: var(--amber); }
 
 .particle-field { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
@@ -307,7 +328,7 @@ html { scroll-behavior: smooth; background: var(--ink-deep); }
   .loader-screen { display: none; }
 }
 
-/* ============ EXCLADE 2K26 · PHASE 02 — THE LAB ============ */
+/* ============ EXCLADE 2K26 · THE LAB ============ */
 
 button.primary-cta { border: 0; cursor: pointer; font-family: "Space Mono", monospace; }
 .pending { color: color-mix(in oklab, var(--sand) 40%, transparent) !important; }
@@ -469,7 +490,7 @@ button.primary-cta { border: 0; cursor: pointer; font-family: "Space Mono", mono
   .case-card:hover { transform: none; }
 }
 
-/* ============ EXCLADE 2K26 · PHASE 03 — CHAOS ZONE ============ */
+/* ============ EXCLADE 2K26 · CHAOS ZONE ============ */
 .chaos-section { position: relative; overflow: hidden; border-top: 1px solid var(--line); background: var(--ink-deep); }
 .chaos-section::before { position: absolute; inset: 0; content: ""; opacity: .4; background: radial-gradient(ellipse at 12% 16%, color-mix(in oklab, var(--amber) 12%, transparent), transparent 32%), radial-gradient(ellipse at 90% 58%, color-mix(in oklab, var(--lime) 9%, transparent), transparent 30%); pointer-events: none; }
 .chaos-grid { position: absolute; inset: 0; opacity: .17; background-image: linear-gradient(color-mix(in oklab, var(--amber) 20%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--amber) 20%, transparent) 1px, transparent 1px); background-size: 54px 54px; mask-image: linear-gradient(110deg, black, transparent 72%); pointer-events: none; }
@@ -556,7 +577,7 @@ button.primary-cta { border: 0; cursor: pointer; font-family: "Space Mono", mono
   .chaos-card:hover, .chaos-card:focus-within, .chaos-card-selected, .chaos-card-2:hover, .chaos-card-5:hover, .random-button:hover { transform: none; }
 }
 
-/* ---------- PHASE 04 · THE CREW ---------- */
+/* ---------- THE CREW ---------- */
 .crew-section { position: relative; overflow: hidden; padding: clamp(4rem, 9vw, 8rem) clamp(1.25rem, 5vw, 5rem); border-top: 1px solid var(--line); }
 .crew-grid-bg { position: absolute; inset: 0; opacity: .18; background-image: linear-gradient(color-mix(in oklab, var(--sand) 10%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--sand) 10%, transparent) 1px, transparent 1px); background-size: 68px 68px; mask-image: linear-gradient(to bottom, black, transparent 85%); pointer-events: none; }
 .crew-smoke { position: absolute; inset: -20%; opacity: .3; background: radial-gradient(ellipse at 22% 18%, color-mix(in oklab, var(--amber) 12%, transparent), transparent 60%), radial-gradient(ellipse at 78% 72%, color-mix(in oklab, var(--lime) 9%, transparent), transparent 62%); filter: blur(28px); animation: chaos-drift 22s ease-in-out infinite alternate; pointer-events: none; }
@@ -634,7 +655,7 @@ button.primary-cta { border: 0; cursor: pointer; font-family: "Space Mono", mono
 .crew-handoff h3 { margin: 1.4rem 0 .4rem; color: var(--sand); font: 800 clamp(1.7rem, 4vw, 3rem)/.98 "Syne", sans-serif; letter-spacing: -.04em; }
 .crew-handoff > p { margin: 0; color: color-mix(in oklab, var(--sand) 55%, transparent); font: .58rem "Space Mono", monospace; letter-spacing: .2em; }
 
-/* ---------- PHASE 04 · REGISTRATION TERMINAL ---------- */
+/* ---------- REGISTRATION TERMINAL ---------- */
 .register-section { position: relative; overflow: hidden; padding: clamp(4rem, 9vw, 8rem) clamp(1.25rem, 5vw, 5rem); border-top: 1px solid var(--line); }
 .register-grid-bg { position: absolute; inset: 0; opacity: .16; background-image: linear-gradient(color-mix(in oklab, var(--lime) 10%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--lime) 10%, transparent) 1px, transparent 1px); background-size: 60px 60px; mask-image: linear-gradient(to bottom, transparent, black 40%, transparent); pointer-events: none; }
 .register-inner { position: relative; max-width: 62rem; margin: 0 auto; }

@@ -15,7 +15,7 @@ export function HeroSection({ onEnterLab }: HeroSectionProps) {
       <div className="hero-content">
         <div className="hero-meta reveal reveal-delay-one">
           <span>CSE · IoT DEPT.</span>
-          <span className="meta-status"><i aria-hidden="true" /> PHASE 01</span>
+          <span className="meta-status"><i aria-hidden="true" /> SYSTEM ONLINE</span>
         </div>
 
         <div className="institution-line reveal reveal-delay-two">
