@@ -19,3 +19,10 @@
 - [ ] Reduced-motion + accessibility + responsive pass
 - [ ] Data consistency check (5 tech / 6 non-tech events, crew counts)
 - [ ] SEO meta + favicon check, cleanup dead code
+
+## Requested site restructure
+- [ ] Remove all visible Phase 1–5 wording
+- [ ] Split About, Events, Crew, Registration, and Contact into separate pages
+- [ ] Add uploaded intro music with accessible playback controls
+- [ ] Add chemistry/crime-drama-inspired transitions and motion across pages
+- [ ] Verify navigation, mobile layout, reduced motion, audio, and route loading
