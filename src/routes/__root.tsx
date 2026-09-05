@@ -4,13 +4,21 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { CinematicLoader } from "@/components/CinematicLoader";
+import { IntroMusic } from "@/components/IntroMusic";
+import { LabAmbience } from "@/components/LabAmbience";
+import { ParticleField } from "@/components/ParticleField";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteNav } from "@/components/SiteNav";
 
 function NotFoundComponent() {
   return (
@@ -19,7 +27,7 @@ function NotFoundComponent() {
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          This file isn't in the archive. Try another route.
         </p>
         <div className="mt-6">
           <Link
@@ -77,14 +85,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-       { title: "EXCLADE 2K26 | KSR College of Engineering" },
-       { name: "description", content: "EXCLADE 2K26 — a cinematic technology symposium experience from KSR College of Engineering." },
-       { name: "author", content: "KSR College of Engineering · Department of CSE (IoT)" },
-       { property: "og:title", content: "EXCLADE 2K26 | KSR College of Engineering" },
-       { property: "og:description", content: "Technology, innovation and experience begin inside the EXCLADE 2K26 laboratory." },
+      { name: "author", content: "KSR College of Engineering · Department of CSE (IoT)" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
@@ -122,11 +125,43 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const [showLoader, setShowLoader] = useState(false);
+
+  useEffect(() => {
+    if (window.sessionStorage.getItem("exclade-intro-seen")) return;
+    setShowLoader(true);
+    const timer = window.setTimeout(() => {
+      window.sessionStorage.setItem("exclade-intro-seen", "1");
+      setShowLoader(false);
+    }, 4200);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  const skipLoader = () => {
+    window.sessionStorage.setItem("exclade-intro-seen", "1");
+    setShowLoader(false);
+  };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [pathname]);
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="exclade-app">
+        {showLoader && <CinematicLoader onSkip={skipLoader} />}
+        <ScrollProgress />
+        <ParticleField />
+        <LabAmbience />
+        <SiteNav />
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <main key={pathname} className="route-view">
+          <Outlet />
+        </main>
+        <SiteFooter />
+        <IntroMusic />
+      </div>
     </QueryClientProvider>
   );
 }
