@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
@@ -16,10 +17,10 @@ export function SiteNav() {
   return (
     <header className="site-nav">
       <div className="nav-shell">
-        <a className="brand-lockup" href="#home" aria-label="EXCLADE 2K26 home">
+        <Link className="brand-lockup" to="/" aria-label="EXCLADE 2K26 home">
           <span className="brand-symbol">E</span>
           <span className="brand-name">EXCLADE <b>2K26</b></span>
-        </a>
+        </Link>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
           {navItems.map(([label, href]) => (

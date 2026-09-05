@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 export function FinalCTA() {
   return (
     <section className="final-cta" aria-labelledby="final-cta-title">
@@ -9,8 +10,8 @@ export function FinalCTA() {
           <em>ARE YOU?</em>
         </h2>
         <div className="hero-actions">
-          <a className="primary-cta" href="#register">REGISTER FOR EXCLADE 2K26 <span aria-hidden="true">→</span></a>
-          <a className="secondary-cta" href="#events">EXPLORE EVENTS</a>
+          <Link className="primary-cta" to="/register">REGISTER FOR EXCLADE 2K26 <span aria-hidden="true">→</span></Link>
+          <Link className="secondary-cta" to="/events">EXPLORE EVENTS</Link>
         </div>
       </div>
     </section>

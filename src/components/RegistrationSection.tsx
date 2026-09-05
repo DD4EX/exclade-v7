@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { CheckCircle2, Lock, Terminal } from "lucide-react";
 import { technicalEvents } from "@/data/technicalEvents";
@@ -193,7 +194,7 @@ export function RegistrationSection() {
         </div>
       </div>
 
-      <a className="sticky-register-cta" href="#register">REGISTER NOW</a>
+      <Link className="sticky-register-cta" to="/register">REGISTER NOW</Link>
     </section>
   );
 }

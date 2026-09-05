@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { EventFileModal } from "@/components/EventFileModal";
 import { technicalEvents, type TechnicalEvent } from "@/data/technicalEvents";
@@ -89,7 +90,7 @@ export function TechnicalOperations() {
            <h3>ENTER THE CHAOS ZONE</h3>
           <div className="hero-actions">
              <button className="primary-cta" type="button" onClick={() => setEnteringChaos(true)}>ACCEPT THE CHALLENGE <span aria-hidden="true">→</span></button>
-            <a className="primary-cta" href="#register">REGISTER</a>
+            <Link className="primary-cta" to="/register">REGISTER</Link>
           </div>
         </div>
       </div>

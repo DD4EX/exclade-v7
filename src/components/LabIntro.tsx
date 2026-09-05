@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { ArrowDown } from "lucide-react";
 
 export function LabIntro() {
@@ -9,10 +10,10 @@ export function LabIntro() {
         <p className="lab-intro-badge">ACCESS GRANTED</p>
         <h2 id="lab-intro-title">THE EXCLADE LAB</h2>
         <p className="lab-intro-sub">WHERE TECHNOLOGY MEETS THE UNEXPECTED</p>
-        <a className="scroll-cue" href="#about">
+        <Link className="scroll-cue" to="/about">
           <span>PROCEED TO BRIEFING</span>
           <ArrowDown aria-hidden="true" size={14} />
-        </a>
+        </Link>
       </div>
     </section>
   );

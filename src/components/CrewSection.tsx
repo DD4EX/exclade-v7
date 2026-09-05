@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Search, Users } from "lucide-react";
 import { PersonnelCard } from "@/components/PersonnelCard";
@@ -251,7 +252,7 @@ export function CrewSection() {
           <h3>YOUR OPERATION STARTS HERE.</h3>
           <p>CHOOSE YOUR CHALLENGE. JOIN EXCLADE 2K26.</p>
           <div className="hero-actions">
-            <a className="primary-cta" href="#register">REGISTER NOW <span aria-hidden="true">→</span></a>
+            <Link className="primary-cta" to="/register">REGISTER NOW <span aria-hidden="true">→</span></Link>
           </div>
         </div>
       </div>

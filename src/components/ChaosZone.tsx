@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Dice5, Radio, Zap } from "lucide-react";
 import { EventFileModal } from "@/components/EventFileModal";
@@ -112,8 +113,8 @@ export function ChaosZone() {
             <h3>SIX OPERATIONS.<br /><em>ZERO GUARANTEES.</em></h3>
             <p>THE LAB ISN&apos;T DONE YET.</p>
             <div className="hero-actions">
-              <a className="primary-cta" href="#crew">MEET THE CREW <span aria-hidden="true">→</span></a>
-              <a className="secondary-cta" href="#register">REGISTER</a>
+              <Link className="primary-cta" to="/crew">MEET THE CREW <span aria-hidden="true">→</span></Link>
+              <Link className="secondary-cta" to="/register">REGISTER</Link>
             </div>
           </div>
         </div>
