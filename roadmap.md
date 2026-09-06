@@ -26,3 +26,8 @@
 - [ ] Add uploaded intro music with accessible playback controls
 - [ ] Add chemistry/crime-drama-inspired transitions and motion across pages
 - [ ] Verify navigation, mobile layout, reduced motion, audio, and route loading
+
+## Official schedule integration
+- [x] Add the official two-day Operation Schedule to the Events page
+- [x] Preserve all supplied event names, venues, and timings exactly
+- [x] Add non-navigational venue information popups without invented map links
