@@ -2691,6 +2691,420 @@ button.primary-cta {
   }
 }
 
+/* ---------- OPERATION SCHEDULE ---------- */
+.schedule-section {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  background: color-mix(in oklab, var(--ink-deep) 92%, transparent);
+}
+
+.schedule-section::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  opacity: .3;
+  background-image: linear-gradient(color-mix(in oklab, var(--lime) 7%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--amber) 7%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+}
+
+.schedule-scan-line {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--lime);
+  box-shadow: 0 0 18px color-mix(in oklab, var(--lime) 72%, transparent);
+  animation: schedule-tactical-scan 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.schedule-inner {
+  position: relative;
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: clamp(4.5rem, 9vw, 7.5rem) clamp(1.25rem, 5vw, 5rem);
+}
+
+.schedule-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-bottom: 1.8rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--amber) 38%, transparent);
+}
+
+.schedule-heading h2 {
+  max-width: 14ch;
+  margin: .6rem 0 0;
+  color: var(--sand);
+  font: 800 clamp(2.1rem, 5vw, 4.7rem)/.94 "Syne", sans-serif;
+  letter-spacing: .02em;
+}
+
+.schedule-system,
+.schedule-switcher-copy,
+.schedule-database-topline,
+.schedule-card-topline,
+.schedule-facts dt,
+.schedule-locate,
+.schedule-lockup,
+.schedule-modal-facts dt,
+.schedule-modal-note {
+  font-family: "Space Mono", monospace;
+}
+
+.schedule-system {
+  max-width: 22rem;
+  color: color-mix(in oklab, var(--lime) 72%, transparent);
+  font-size: .56rem;
+  line-height: 1.7;
+  letter-spacing: .12em;
+  text-align: right;
+}
+
+.schedule-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 2rem 0 1rem;
+  padding: 1rem;
+  border: 1px solid color-mix(in oklab, var(--sand) 18%, transparent);
+  background: color-mix(in oklab, var(--ink-panel) 76%, transparent);
+}
+
+.schedule-switcher-copy {
+  display: grid;
+  gap: .35rem;
+  color: color-mix(in oklab, var(--sand) 46%, transparent);
+  font-size: .56rem;
+  letter-spacing: .14em;
+}
+
+.schedule-switcher-copy strong {
+  color: var(--amber);
+  font-size: .88rem;
+  letter-spacing: .16em;
+}
+
+.schedule-tabs {
+  display: flex;
+  gap: .5rem;
+}
+
+.schedule-tab {
+  min-width: 7.4rem;
+  padding: .85rem 1rem;
+  border: 1px solid color-mix(in oklab, var(--sand) 28%, transparent);
+  color: color-mix(in oklab, var(--sand) 60%, transparent);
+  background: transparent;
+  cursor: pointer;
+  font: 700 .68rem "Space Mono", monospace;
+  letter-spacing: .15em;
+  transition: border-color 180ms ease, color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.schedule-tab:hover,
+.schedule-tab:focus-visible,
+.schedule-tab.is-active {
+  border-color: var(--amber);
+  color: var(--ink);
+  background: var(--amber);
+}
+
+.schedule-tab:focus-visible,
+.schedule-locate:focus-visible,
+.schedule-modal-close:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 3px;
+}
+
+.schedule-tab:active {
+  transform: translateY(1px);
+}
+
+.schedule-database {
+  position: relative;
+  transition: opacity 160ms ease, transform 380ms ease;
+}
+
+.schedule-database.is-switching {
+  opacity: .34;
+  transform: translateY(5px);
+}
+
+.schedule-database-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .8rem 0;
+  color: color-mix(in oklab, var(--sand) 46%, transparent);
+  font-size: .58rem;
+  letter-spacing: .16em;
+}
+
+.schedule-database-topline span:first-child {
+  color: var(--lime);
+}
+
+.schedule-card-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.schedule-card {
+  position: relative;
+  display: flex;
+  min-height: 245px;
+  overflow: hidden;
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 1px solid color-mix(in oklab, var(--amber) 38%, transparent);
+  background: color-mix(in oklab, var(--ink-panel) 86%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--lime) 5%, transparent);
+  animation: schedule-card-found 520ms cubic-bezier(.22, .72, 0, 1) both;
+}
+
+.schedule-card::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  opacity: .2;
+  background: repeating-linear-gradient(0deg, transparent 0 4px, color-mix(in oklab, var(--sand) 9%, transparent) 5px, transparent 6px);
+  pointer-events: none;
+}
+
+.schedule-card::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  content: "";
+  background: var(--lime);
+  opacity: .7;
+}
+
+.schedule-card-topline {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: color-mix(in oklab, var(--sand) 48%, transparent);
+  font-size: .56rem;
+  letter-spacing: .14em;
+}
+
+.schedule-card-topline span:first-child {
+  color: var(--amber);
+}
+
+.schedule-card h3 {
+  position: relative;
+  min-height: 3.4rem;
+  margin: 1.35rem 0 1.2rem;
+  color: var(--sand);
+  font: 800 1.25rem/1.05 "Syne", sans-serif;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+
+.schedule-facts {
+  position: relative;
+  display: grid;
+  gap: .9rem;
+  margin: 0;
+}
+
+.schedule-facts div {
+  display: grid;
+  gap: .3rem;
+}
+
+.schedule-facts dt {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  color: color-mix(in oklab, var(--sand) 45%, transparent);
+  font-size: .55rem;
+  letter-spacing: .16em;
+}
+
+.schedule-facts dt svg {
+  color: var(--lime);
+}
+
+.schedule-facts dd {
+  margin: 0;
+  color: var(--sand);
+  font-size: .76rem;
+  line-height: 1.35;
+}
+
+.schedule-locate {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: auto;
+  padding: .75rem 0 0;
+  border: 0;
+  border-top: 1px solid color-mix(in oklab, var(--sand) 14%, transparent);
+  color: var(--amber);
+  background: transparent;
+  cursor: pointer;
+  font-size: .56rem;
+  letter-spacing: .15em;
+  text-align: left;
+}
+
+.schedule-locate:hover {
+  color: var(--lime);
+}
+
+.schedule-lockup {
+  display: grid;
+  gap: .35rem;
+  margin-top: 2.4rem;
+  padding: 1.8rem 0 .2rem;
+  border-top: 1px solid color-mix(in oklab, var(--amber) 34%, transparent);
+  color: color-mix(in oklab, var(--sand) 55%, transparent);
+  font-size: .58rem;
+  letter-spacing: .14em;
+}
+
+.schedule-lockup > span {
+  color: var(--lime);
+}
+
+.schedule-lockup strong {
+  color: var(--amber);
+  font-size: .82rem;
+}
+
+.schedule-lockup p,
+.schedule-lockup em {
+  margin: 0;
+  font-style: normal;
+  line-height: 1.65;
+}
+
+.schedule-lockup em {
+  margin-top: .8rem;
+  color: var(--sand);
+}
+
+.schedule-venue-overlay {
+  position: fixed;
+  z-index: 120;
+  inset: 0;
+  display: grid;
+  padding: 1.25rem;
+  place-items: center;
+  background: color-mix(in oklab, var(--ink-deep) 82%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.schedule-venue-modal {
+  position: relative;
+  width: min(32rem, 100%);
+  padding: 2rem;
+  border: 1px solid var(--amber);
+  background: var(--ink-panel);
+  box-shadow: 0 24px 80px color-mix(in oklab, var(--ink-deep) 76%, transparent);
+}
+
+.schedule-modal-close {
+  position: absolute;
+  top: .8rem;
+  right: .8rem;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid color-mix(in oklab, var(--sand) 25%, transparent);
+  color: var(--sand);
+  background: transparent;
+  cursor: pointer;
+  place-items: center;
+}
+
+.schedule-venue-modal h3 {
+  max-width: 12ch;
+  margin: 1rem 0 1.5rem;
+  color: var(--sand);
+  font: 800 2rem/1 "Syne", sans-serif;
+  text-transform: uppercase;
+}
+
+.schedule-modal-facts {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+}
+
+.schedule-modal-facts div {
+  display: grid;
+  gap: .35rem;
+}
+
+.schedule-modal-facts dt {
+  color: var(--lime);
+  font-size: .56rem;
+  letter-spacing: .15em;
+}
+
+.schedule-modal-facts dd {
+  margin: 0;
+  color: var(--sand);
+}
+
+.schedule-modal-note {
+  margin: 1.5rem 0 0;
+  color: color-mix(in oklab, var(--sand) 50%, transparent);
+  font-size: .6rem;
+  line-height: 1.6;
+}
+
+@keyframes schedule-tactical-scan {
+  0%, 16% { transform: translateY(0); opacity: 0; }
+  28% { opacity: .8; }
+  72% { opacity: .8; }
+  84%, 100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes schedule-card-found {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .schedule-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .schedule-heading,
+  .schedule-switcher { align-items: flex-start; flex-direction: column; }
+  .schedule-system { text-align: left; }
+  .schedule-tabs { width: 100%; }
+  .schedule-tab { flex: 1; min-width: 0; }
+  .schedule-card-grid { grid-template-columns: 1fr; }
+  .schedule-card { min-height: 230px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .schedule-scan-line,
+  .schedule-card { animation: none; }
+  .schedule-database { transition: none; }
+  .schedule-tab:active { transform: none; }
+}
+
 @keyframes dossier-open {
   from {
     opacity: 0;

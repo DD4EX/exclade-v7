@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { ChaosZone } from "@/components/ChaosZone";
+import { OperationSchedule } from "@/components/OperationSchedule";
 import { TechnicalOperations } from "@/components/TechnicalOperations";
 
 const title = "Events | EXCLADE 2K26 Technical & Non-Technical";
@@ -23,6 +24,7 @@ function EventsPage() {
   return (
     <>
       <TechnicalOperations />
+      <OperationSchedule />
       <ChaosZone />
     </>
   );

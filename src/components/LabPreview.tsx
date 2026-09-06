@@ -23,7 +23,7 @@ const dossiers = [
     image: extractionImage,
     icon: RadioTower,
     tone: "sand",
-    to: "/events#non-technical",
+    to: "/events",
   },
   {
     id: "File 03 — Distillation",
