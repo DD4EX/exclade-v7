@@ -228,7 +228,7 @@ export function RegistrationSection() {
       setFormError("");
       setStep(3);
     } catch {
-      setFormError("DAY PAYMENT CAPACITY REACHED");
+      setFormError("PAYMENT CHANNEL UNAVAILABLE — PLEASE TRY AGAIN");
       setStep(2);
     }
   };
@@ -488,7 +488,7 @@ export function RegistrationSection() {
                     />
                   </div>
                 ) : (
-                  <p className="register-error">{formError || "DAY PAYMENT CAPACITY REACHED"}</p>
+                  <p className="register-error">{formError || "PAYMENT CHANNEL UNAVAILABLE — PLEASE TRY AGAIN"}</p>
                 )}
               </fieldset>
 

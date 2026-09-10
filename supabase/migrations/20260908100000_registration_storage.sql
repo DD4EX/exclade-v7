@@ -214,28 +214,26 @@ BEGIN
       AND day = v_account.day
       AND account_name = v_account.account_name;
 
-    IF v_row.used_count < v_account.daily_limit THEN
-      UPDATE public.upi_daily_usage
-      SET used_count = used_count + 1
-      WHERE usage_date = v_today
-        AND day = v_account.day
-        AND account_name = v_account.account_name;
+    UPDATE public.upi_daily_usage
+    SET used_count = used_count + 1
+    WHERE usage_date = v_today
+      AND day = v_account.day
+      AND account_name = v_account.account_name;
 
-      SELECT used_count INTO v_row
-      FROM public.upi_daily_usage
-      WHERE usage_date = v_today
-        AND day = v_account.day
-        AND account_name = v_account.account_name;
+    SELECT used_count INTO v_row
+    FROM public.upi_daily_usage
+    WHERE usage_date = v_today
+      AND day = v_account.day
+      AND account_name = v_account.account_name;
 
-      registration_id := p_registration_id;
-      assigned_day := p_day;
-      assigned_upi_account := v_account.account_name;
-      assigned_upi_name := v_account.display_name;
-      assigned_upi_id := v_account.upi_id;
-      daily_transaction_slot := v_row.used_count;
-      RETURN NEXT;
-      RETURN;
-    END IF;
+    registration_id := p_registration_id;
+    assigned_day := p_day;
+    assigned_upi_account := v_account.account_name;
+    assigned_upi_name := v_account.display_name;
+    assigned_upi_id := v_account.upi_id;
+    daily_transaction_slot := v_row.used_count;
+    RETURN NEXT;
+    RETURN;
   END LOOP;
 
   RETURN;
